@@ -23,8 +23,8 @@ envFrom: []
 # This is useful for mounting certificates for security and for mounting
 # the X-Pack license
 secretMounts:
- - name: kibana-keystore
-   secretName: kibana-keystore
+ - name: kibana-certs
+   secretName: kibana-certs
    path: /usr/share/kibana/config/certs/
    defaultMode: 0755
    #subPath: kibana.keystore # optional
@@ -64,11 +64,11 @@ healthCheckPath: "/app/kibana"
 kibanaConfig:
   kibana.yml: |
     elasticsearch.hosts: https://elasticsearch-master:9200
-    elasticsearch.ssl.certificateAuthorities:  /usr/share/kibana/config/certs/rootCA.pem
+    elasticsearch.ssl.certificateAuthorities: /usr/share/kibana/config/certs/rootCA.pem
     elasticsearch.ssl.verificationMode: certificate
     server.ssl.enabled: true
-    server.ssl.key:  /usr/share/kibana/config/certs/kib01.key
-    server.ssl.certificate:  /usr/share/kibana/config/certs/kib01.crt
+    server.ssl.key: /usr/share/kibana/config/certs/kib.key
+    server.ssl.certificate: /usr/share/kibana/config/certs/kib.crt
 
 #   kibana.yml: |
 #     key:

@@ -15,8 +15,8 @@ roles:
   remote_cluster_client: "true"
   ml: "true"
 
-replicas: 4
-minimumMasterNodes: 3
+replicas: 3
+minimumMasterNodes: 2
 
 esMajorVersion: ""
 
@@ -26,13 +26,13 @@ esConfig:
   elasticsearch.yml: |
     xpack.security.transport.ssl.enabled: true
     xpack.security.transport.ssl.verification_mode: certificate
-    xpack.security.transport.ssl.key: /usr/share/elasticsearch/config/certs/es01.key
+    xpack.security.transport.ssl.key: /usr/share/elasticsearch/config/certs/es.key
     xpack.security.transport.ssl.certificate_authorities: /usr/share/elasticsearch/config/certs/rootCA.pem
-    xpack.security.transport.ssl.certificate: /usr/share/elasticsearch/config/certs/es01.crt
+    xpack.security.transport.ssl.certificate: /usr/share/elasticsearch/config/certs/es.crt
     xpack.security.http.ssl.enabled: true
-    xpack.security.http.ssl.key: /usr/share/elasticsearch/config/certs/es01.key
+    xpack.security.http.ssl.key: /usr/share/elasticsearch/config/certs/es.key
     xpack.security.http.ssl.certificate_authorities: /usr/share/elasticsearch/config/certs/rootCA.pem
-    xpack.security.http.ssl.certificate: /usr/share/elasticsearch/config/certs/es01.crt
+    xpack.security.http.ssl.certificate: /usr/share/elasticsearch/config/certs/es.crt
 
 #    key:
 #      nestedkey: value
@@ -61,8 +61,8 @@ envFrom: []
 # This is useful for mounting certificates for security and for mounting
 # the X-Pack license
 secretMounts:
- - name: elastic-certificates
-   secretName: elastic-certificates
+ - name: elastic-certs
+   secretName: elastic-certs
    path: /usr/share/elasticsearch/config/certs
    defaultMode: 0755
 
